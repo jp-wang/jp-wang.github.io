@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ### Dagger
 
@@ -83,4 +83,3 @@ public abstract BaseActivity<P extends BasePresenter> extends Activity {
 ```
 
 Now we have general framework setup with MVP pattern!
-
