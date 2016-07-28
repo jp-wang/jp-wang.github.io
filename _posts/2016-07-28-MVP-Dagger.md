@@ -1,4 +1,6 @@
 ---
+layout: post
+title: Common framework for MVP + Dagger
 published: true
 ---
 ### Dagger
