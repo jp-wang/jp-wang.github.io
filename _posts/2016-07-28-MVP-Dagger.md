@@ -3,6 +3,9 @@ layout: post
 title: Common framework for MVP + Dagger
 published: true
 ---
+
+(by [@jpwang](https://github.com/jp-wang) and original post is [here](https://github.com/jp-wang/jp-wang.github.io/blob/master/_posts/2016-07-28-MVP-Dagger.md))
+
 ### Dagger
 
 **Dagger** is a fully static, compile-time dependency injection framework for both Java and Android.
