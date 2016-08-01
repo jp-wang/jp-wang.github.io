@@ -3,7 +3,7 @@ published: false
 ---
 ### What's lambda
 
-(by [@jpwang](https://github.com/jp-wang) and original post is [here](hhttps://github.com/jp-wang/jp-wang.github.io/blob/master/_posts/2016-07-27-rxjava-01.md))
+(by [@jpwang](https://github.com/jp-wang) and original post is [here](https://github.com/jp-wang/jp-wang.github.io/blob/master/_posts/2016-08-01-deep-into-lambda.md))
 
 **Lambda** is one of most fashion and useful features in [Java 8](http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.27). A lambda expression is like a method: it provides a list of formal parameters and a body - an expression or block - expressed in terms of those parameters. It is a compile-time error if a lambda expression occurs in a program in someplace other than an assignment context, an invocation context, or a casting context.
 
