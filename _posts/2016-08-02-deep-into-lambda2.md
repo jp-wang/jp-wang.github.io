@@ -1,12 +1,8 @@
 ---
-published: false
----
----
 layout: post
 title: Deep dive into Java Lambda(0x02)
 published: true
 ---
-
 
 # Into the implementation
 
