@@ -1,6 +1,9 @@
 ---
+layout: post
+title: Deep into Java Lambda(0x01)
 published: true
 ---
+
 ### What's lambda
 
 (by [@jpwang](https://github.com/jp-wang) and original post is [here](https://github.com/jp-wang/jp-wang.github.io/blob/master/_posts/2016-08-01-deep-into-lambda.md))
