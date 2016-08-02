@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Deep into Java Lambda(0x01)
+title: Deep dive into Java Lambda(0x01)
 published: true
 ---
 
