@@ -5,7 +5,7 @@ published: true
 ---
 # Into the implementation
 
-(by [@jpwang](https://github.com/jp-wang) and original post is [here](https://github.com/jp-wang/jp-wang.github.io/blob/master/_posts/2016-08-01-deep-into-lambda.md))
+(by [@jpwang](https://github.com/jp-wang) and original post is [here](https://github.com/jp-wang/jp-wang.github.io/blob/master/_posts/2016-08-02-deep-into-lambda2.md))
 
 In last chapter, we talked a lot about how to use [Lambda Expressions](https://jp-wang.github.io/deep-into-lambda/) and implement custom defined [Functional Interface](https://jp-wang.github.io/deep-into-lambda/). And you may want to know more about it. This is what's the current chapter trying to do! By using a very simple demo and deeping into the Java byte code, let's find out how does JVM finally support it and what kind of magic is playing inside. Let's begin!
 
