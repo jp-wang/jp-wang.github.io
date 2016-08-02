@@ -3,10 +3,9 @@ layout: post
 title: Deep dive into Java Lambda(0x02)
 published: true
 ---
-
 # Into the implementation
 
-(by [@jpwang](https://github.com/jp-wang) and original post is [here](https://github.com/jp-wang/jp-wang.github.io/blob/master/_posts/2016-08-02-deep-into-lambda2.md))
+(by [@jpwang](https://github.com/jp-wang) and original post is [here](https://github.com/jp-wang/jp-wang.github.io/blob/master/_posts/2016-08-01-deep-into-lambda.md))
 
 In last chapter, we talked a lot about how to use [Lambda Expressions](https://jp-wang.github.io/deep-into-lambda/) and implement custom defined [Functional Interface](https://jp-wang.github.io/deep-into-lambda/). And you may want to know more about it. This is what's the current chapter trying to do! By using a very simple demo and deeping into the Java byte code, let's find out how does JVM finally support it and what kind of magic is playing inside. Let's begin!
 
@@ -41,6 +40,7 @@ See the byte code after it gets compiled:
 Two classes were generated out - `Lambda.class` and `Lambda$1.class`
 
 `javap -v -p -s -sysinfo -constants Lambda.class `
+
 ```
 Classfile /Users/jpwang/Desktop/Lambda.class
   Last modified Aug 1, 2016; size 562 bytes
