@@ -5,7 +5,7 @@ published: true
 ---
 
 
-*There is a beautiful document talking about how to build a clean architecture which I leave one copy here. If you are more interested in it, see the original [post](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html)*
+*There is a beautiful document talking about how to build a clean architecture which I leave one copy here. If you are more interested in it, see the original [post](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) by Uncle Bob*
 
 ![](https://8thlight.com/blog/assets/posts/2012-08-13-the-clean-architecture/CleanArchitecture-8b00a9d7e2543fa9ca76b81b05066629.jpg)
 Over the last several years we’ve seen a whole range of ideas regarding the architecture of systems. These include:
