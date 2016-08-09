@@ -115,10 +115,7 @@ Let's the change the example to:
 
 And the bytecode difference than before is the method thats generated out:
 
-```
-...
-private static void lambda$main$0(int, java.lang.String);
-```
+{% gist jp-wang/1a3605a470b4ad7d1ef71df57f21be11/5ce110d85dfaa12263ea1a7b80d40e809330a727 Lambda.class %}
 
 It has two parameter instead of one: which means both the outside local variables and method itself parameters are treated as same as method parameters. The value of local variables would be assigned into the generated nonymous class by instance constructor.
 
