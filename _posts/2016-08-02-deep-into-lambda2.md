@@ -13,27 +13,7 @@ In last chapter, we talked a lot about how to use [Lambda Expressions](https://j
 
 Before we start talking about how the Java compiler implements the lambda expressions and how the Java Virtual Machine(JVM) deals with them, if you are asked to use your way to implement it, one of possible solution you may choose is Java's sugar - Anonymous Inner Class. Yes or not! I won't tell if it is correct or wrong. Let's firstly see how to use anonymous class:
 
-```java
-@FunctionalInterface
-interface Print<T> {
-    public void print(T x);
-}
-
-public class Lambda {
-    public static void PrintString(String s, Print<String> print) {
-        print.print(s);
-    }
-    
-    public static void main(String[] args) {
-        PrintString("test", new Print<String>() {
-            @Override
-            public void print(String x) {
-                System.out.println(x);
-            }
-        });
-    }
-}
-```
+{% gist jp-wang/858eb2ca6c3915cb868b33be12bc8733/7379856d9c1b521e2e1d851587b16a4c981ccc29 Lambda.java %}
 
 See the byte code after it gets compiled:
 
