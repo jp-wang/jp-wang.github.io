@@ -54,15 +54,15 @@ And Functional interface is another special type of interface which has only one
 
 Following is an example of valid customized functional interface.
 
-{% gist jp-wang/3737915838eebbf8168229d7a5092a23 FunctionalInterface.java %}
+{% gist jp-wang/86e07e57c8bf7e6756998c4d448b3a58 MyInterface.java %}
 
 As we talked before, Functional Interface can only have one abstract method. If you do like below, you will get compile error:
 
-{% gist jp-wang/3737915838eebbf8168229d7a5092a23 FunctionalInterfaceWrong.java %}
+{% gist jp-wang/2cadce67f220148741c60bbe9bbed460 MyInterface.java %}
 
 After you defined the correct interface, you could use it and take advantage of Lambda Expression like below,
 
-{% gist jp-wang/3737915838eebbf8168229d7a5092a23 MyInterfaceTest.java %}
+{% gist jp-wang/a5550cf732abed326655b5413897d744 MyInterfaceTest.java %}
 
 Output:
 
