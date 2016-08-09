@@ -134,7 +134,7 @@ To access the class field, we cannot directly access it in static method. So I p
 
 And the bytecode after runtime generation is :
 
-{% gist jp-wang/e7b51f0c7595205073d6d8b201d46596 Lambda.class %}
+{% gist jp-wang/e7b51f0c7595205073d6d8b201d46596 LambdaAccessLocal.class %}
 
 Instead of static method automatically generated out, an instance method is there which means this method can access any fields in this class. If you take a look at the bytecode of `Lambda$$Lambda$1.class`, the Lambda object itself will be passed into the constructor of `Lambda$$Lambda$1.class`.
 
