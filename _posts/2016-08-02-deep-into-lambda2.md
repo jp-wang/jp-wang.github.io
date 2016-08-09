@@ -13,7 +13,7 @@ In last chapter, we talked a lot about how to use [Lambda Expressions](https://j
 
 Before we start talking about how the Java compiler implements the lambda expressions and how the Java Virtual Machine(JVM) deals with them, if you are asked to use your way to implement it, one of possible solution you may choose is Java's sugar - Anonymous Inner Class. Yes or not! I won't tell if it is correct or wrong. Let's firstly see how to use anonymous class:
 
-{% gist jp-wang/1a3605a470b4ad7d1ef71df57f21be11/7ee8c03b70442c711fb74f3d7abd624580eb4e5c Lambda.java %}
+{% gist jp-wang/0ba691314d7f452cb1015b7ab9a227fe Lambda.java %}
 
 See the byte code after it gets compiled:
 
@@ -21,7 +21,7 @@ Two classes were generated out - `Lambda.class` and `Lambda$1.class`
 
 `javap -v -p -s -sysinfo -constants Lambda.class `
 
-{% gist jp-wang/1a3605a470b4ad7d1ef71df57f21be11/7ee8c03b70442c711fb74f3d7abd624580eb4e5c Lambda.class %}
+{% gist jp-wang/28b144e1d166282e92e7f26371fd84ce Lambda.class %}
 
 From the output, you will understand why we call the anonymous class is a sugar syntax provided by Java: because in JVM, it only recorgnize classes and objects(or instances). There is no kind of `inner class` concept in JVM. Even the programmer like you doesn't give any name of that when we get instance by `new Printer<String> {}` in source code, but the JVM will automatically create a class and give a special name for it, such as `Lambda$0`.
 
@@ -41,11 +41,11 @@ Lets see how it works!
 
 To show it more clear, lets change the example above which was using anonymous inner class to using lambda expression.
 
-{% gist jp-wang/1a3605a470b4ad7d1ef71df57f21be11/ecc17f948cf8f3c63d82c2652280043a4d170a5d Lambda.java %}
+{% gist jp-wang/29ba00700ce941f4ee60e2158f1b997c Lambda.java %}
 
 You will see No extra class file was generated. And the bytecode is:
 
-{% gist jp-wang/1a3605a470b4ad7d1ef71df57f21be11/ecc17f948cf8f3c63d82c2652280043a4d170a5d Lambda.class %}
+{% gist jp-wang/9ebe77982a8b99c419b7d691c4421ee5 Lambda.class %}
 
 Did you see the difference? The major changes the JVM did are:
 
@@ -62,17 +62,17 @@ With this ability, the things running here are difered until runtime with bootst
 
 Lets take a look at the bootstrap methods:
 
-{% gist jp-wang/1a3605a470b4ad7d1ef71df57f21be11/ecc17f948cf8f3c63d82c2652280043a4d170a5d BootstrapMethods.java %}
+{% gist jp-wang/f399b35e407a4f8c5518fe7320058296 BootstrapMethods.java %}
 
 Actually, when you are using IDE to debug it, it will go into the method from `LambdaMetafactory`: `CallSite metafactory(...)`.
 
-{% gist jp-wang/1a3605a470b4ad7d1ef71df57f21be11/ecc17f948cf8f3c63d82c2652280043a4d170a5d LambdaMetafactory1.java %}
+{% gist jp-wang/f7aabd9dc6a7c9cefb8ebbd252c43f22 LambdaMetafactory1.java %}
 
 After going through the source code, you will find that an anonymous class was generated at runtime.
 
-{% gist jp-wang/1a3605a470b4ad7d1ef71df57f21be11/ecc17f948cf8f3c63d82c2652280043a4d170a5d LambdaMetafactory2.java %}
+{% gist jp-wang/5046148e3dfe4a1a31cae84c4b7a4222 LambdaMetafactory2.java %}
 
-{% gist jp-wang/1a3605a470b4ad7d1ef71df57f21be11/ecc17f948cf8f3c63d82c2652280043a4d170a5d LambdaMetafactory3.java %}
+{% gist jp-wang/c10150e5fdcb8412440fcfe25806707f LambdaMetafactory3.java %}
 
 Most of time, you will be confused by the strategy here: Both of anonymous inner class and lambda expression are creating extra class in memory, what's the difference?
 
@@ -86,7 +86,7 @@ Lets see the anonymous class that we print out(the format is `className$$Lambda$
 
 `javap -v -p -s -sysinfo -constants Lambda\$\$Lambda\$1.class`
 
-{% gist jp-wang/1a3605a470b4ad7d1ef71df57f21be11/ecc17f948cf8f3c63d82c2652280043a4d170a5d Lambda$$Lambda$1.class %}
+{% gist jp-wang/2854b967c483b2a03fb95dbd672140eb Lambda$$Lambda$1.class %}
 
 It will implement the functional interface we defined before, and have its own `print(...)` method which will delegate to invoke static method that was automatically generated in `Lambda.class` - `void lambda$main$0(String)`. It's proxy design pattern!
 
@@ -110,16 +110,16 @@ So let's separate into two parts:
 
 Let's the change the example to:
 
-{% gist jp-wang/1a3605a470b4ad7d1ef71df57f21be11/5ce110d85dfaa12263ea1a7b80d40e809330a727 Lambda.java %}
+{% gist jp-wang/0d78af38c0e00ddd0dfcddc082f45d9d LambdaAccessVar.java %}
 
 
 And the bytecode difference than before is the method thats generated out:
 
-{% gist jp-wang/1a3605a470b4ad7d1ef71df57f21be11/5ce110d85dfaa12263ea1a7b80d40e809330a727 Lambda.class %}
+{% gist jp-wang/8479c663bc1b68cce7372ea3e9d2c515 LambdaAccessVar.class %}
 
 It has two parameter instead of one: which means both the outside local variables and method itself parameters are treated as same as method parameters. The value of local variables would be assigned into the generated nonymous class by instance constructor.
 
-{% gist jp-wang/1a3605a470b4ad7d1ef71df57f21be11/5ce110d85dfaa12263ea1a7b80d40e809330a727 Lambda$$Lambda$1.class %}
+{% gist jp-wang/9adf51f31eb6d33d62d1f152c0754c7b Lambda$$Lambda$1AccessVar.class %}
 
 So that means both anonymous inner class and Lambda Expression are taking this case as the same way.
 
@@ -128,13 +128,13 @@ So that means both anonymous inner class and Lambda Expression are taking this c
 
 Let's the change the example to:
 
-{% gist jp-wang/1a3605a470b4ad7d1ef71df57f21be11/0370d472dbeb38aef7c6cd5f2929334a9c9dd452 Lambda.java %}
+{% gist jp-wang/9594100aaa77c4bd7618cb8007d07867 LambdaAccessLocal.java %}
 
 To access the class field, we cannot directly access it in static method. So I put the lambda expression into non-static method and access the class field `a` in the expression body.
 
 And the bytecode after runtime generation is :
 
-{% gist jp-wang/1a3605a470b4ad7d1ef71df57f21be11/0370d472dbeb38aef7c6cd5f2929334a9c9dd452 Lambda.class %}
+{% gist jp-wang/e7b51f0c7595205073d6d8b201d46596 Lambda.class %}
 
 Instead of static method automatically generated out, an instance method is there which means this method can access any fields in this class. If you take a look at the bytecode of `Lambda$$Lambda$1.class`, the Lambda object itself will be passed into the constructor of `Lambda$$Lambda$1.class`.
 
