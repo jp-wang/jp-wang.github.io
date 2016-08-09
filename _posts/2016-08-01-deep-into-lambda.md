@@ -54,50 +54,15 @@ And Functional interface is another special type of interface which has only one
 
 Following is an example of valid customized functional interface.
 
-```java
-@FunctionalInterface
-public interface MyInterface {
-    void doWork();
-}
-```
+{% gist jp-wang/3737915838eebbf8168229d7a5092a23 FunctionalInterface.java %}
 
 As we talked before, Functional Interface can only have one abstract method. If you do like below, you will get compile error:
 
-```java
-@FunctionalInterface
-public interface MyInterface {
-    void doWork();
-    void finishWork();
-}
-```
+{% gist jp-wang/3737915838eebbf8168229d7a5092a23 FunctionalInterfaceWrong.java %}
 
 After you defined the correct interface, you could use it and take advantage of Lambda Expression like below,
 
-```java
-@FunctionalInterface
-public interface MyInterface {
-    void doWork();
-}
-
-public class MyInterfaceTest {
-    public static void execute(MyInterface myInterface) {
-        myInterface.execute();
-    }
-    
-    public static void main(String[] args) {
-        // Use annoymous class
-        execute(new MyInterface() {
-            @Override
-            public void doWork() {
-                System.out.println("Using annoymous class");
-            }
-        });
-        
-        // Use Lambda Expression
-        execute(() -> System.out.println("Using lambda expression"));
-    }
-}
-```
+{% gist jp-wang/3737915838eebbf8168229d7a5092a23 MyInterfaceTest.java %}
 
 Output:
 
