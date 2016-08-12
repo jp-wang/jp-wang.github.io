@@ -1,3 +1,9 @@
+---
+layout: post
+title: Memory leak on Android
+published: true
+---
+
 ### Memory leak in Android
 
 * Memory dump file before App run: [Snapshot_2016.08.10_13.28.36.hprof.zip](../attachments/Snapshot_2016.08.10_13.28.36.hprof.zip)
