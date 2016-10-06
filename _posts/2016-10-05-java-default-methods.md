@@ -3,7 +3,7 @@ published: true
 ---
 ## Preface
 
-In my last post([Deep dive into Java Lambda]()), we have looked at the new feature added into Java 8 which gives us a good syntax sugar and effecient way to replace the traditional anonymous inner classes. That is really helpful and lovely. 
+In my last post([Deep dive into Java Lambda](https://jp-wang.github.io/deep-into-lambda/)), we have looked at the new feature added into Java 8 which gives us a good syntax sugar and effecient way to replace the traditional anonymous inner classes. That is really helpful and lovely. 
 
 There is another new feature called **Default Methods** that enable you to add new functionality to the interfaces of your libraries and ensure binary compatibility with code written for older versions of those interfaces. To be honest, it doesn't shock me too much like *Lambda*, either other new features(which I will introduce later), and only give me the feeling like "Oh, that's it?!" The reason I'm not so surprised is due to below two reasons:
 1. The most benefit of **Default Methods** is the binary compatibility.
