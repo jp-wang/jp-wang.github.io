@@ -17,12 +17,7 @@ Before we take a detail look at these two reasons, let's give a simple introduct
 
 To simplfy the concept, let's use one example to explain it. Assume you have a library which defined a interface `Animal`, and your library is currently used by a lot of third partners day over night again and again(Yeap! I'm an Animal lovers!).
 
-```java
-public interface Animal {
-    String getName();
-    int getAge();
-}
-```
+{% gist jp-wang/1d16b9a012df1442f0cf895ef8e142f3 Animal.java %}
 
 However, In some day, you have to change your interface to add a new method `String getColor()`. But you cannot just directly change it, or else the whole world will stop immediately due to the highly dependency on your `Animal` interface.
 
