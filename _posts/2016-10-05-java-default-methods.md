@@ -112,8 +112,8 @@ interface C extends A,B{
 ```
 
 A defines a default method `String say(String words)`, and same signature as in B. So Java8 compiler will force you to override the default method if anyone extends both A and B, or else a compile error will show up.
+
 ```java
-...
 interface C extends A,B{
 	default void say(String words) {
 		System.out.println("C says " + words);
@@ -121,7 +121,6 @@ interface C extends A,B{
 		//B.super.say(words);
 	}
 }
-...
 ```
 
 > Method override is totally different than method overload. The case like below will not get any compile error.
