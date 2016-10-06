@@ -23,26 +23,11 @@ However, In some day, you have to change your interface to add a new method `Str
 
 What can you do?! Yes, thats how the **Default Methods** trying to solve. By using the syntax of Default Methods like below, you don't need to care the binary compatibility anymore and just add what you want.
 
-```java
-public interface Animal {
-    String getName();
-    int getAge();
-    default String getColor() {
-    }
-}
-```
+{% gist jp-wang/cd789f9c2249eda2a065b4499f30713f AnimalNew.java %}
 
 Even more, as the word of `default` means, you can add default behavior in it(Tip: whether you like it or not, that's my hatest one! I will talk more about it right later).
 
-```java
-public interface Animal {
-    ...
-    default String getColor() {
-        return "white";
-    }
-    ...
-}
-```
+{% gist jp-wang/b506e7b64d40d5fb84157f1974ad8b45 AnimalDefault.java %}
 
 Well, that's the **Default Methods** and really straightforward for understanding. And it's also used in lots of common antique interfaces, such as `Collection`, `List`, `Map` and so on. 
 
@@ -78,117 +63,23 @@ If you really have no ways(such as Object Composition, Delegate) to alter your i
 
 * Two interfaces has same default method
 
-```
-+---------------+         +------------+
-|  Interface A  |         |Interface B |
-+-----------^---+         +---^--------+
-            |                 |         
-            |                 |         
-            |                 |         
-            +-+------------+--+         
-              | Interface C|            
-              +------------+
-```
+{% gist jp-wang/456bf0bb23a927b9914b63b54bcc3473 SameDefaultMethod.java %}
 
-```java
-interface A {
-	default voud say(String words) {
-		System.out.println("A says " + words);
-	}
-}
-interface B {
-	default void say(String words) {
-		System.out.println("B says " + words);
-	}
-}
-interface C extends A,B{
-	
-}
-```
+{% gist jp-wang/0a500682f3a1d177fbe7bc2aec9e8842 SameDefaultMethod.java %}
 
 A defines a default method `String say(String words)`, and same signature as in B. So Java8 compiler will force you to override the default method if anyone extends both A and B, or else a compile error will show up.
 
-```java
-interface C extends A,B{
-	default void say(String words) {
-		System.out.println("C says " + words);
-		//You can also point out which parent method you wwant to call
-		//B.super.say(words);
-	}
-}
-```
+{% gist jp-wang/5c38cb261a6f14d2d0b91d2a9bfdb89f COverride.java %}
 
 > Method override is totally different than method overload. The case like below will not get any compile error.
 
-```java
-interface A {
-	default voud say(String words) {
-		
-	}
-}
-interface B {
-	default void say(int num) {
-	}
-}
-interface C extends A,B{
-	
-}
-```
+{% gist jp-wang/495da1b1429eca9a43597f6dee812258 COverload.java %}
     
 * Multiple interfaces are inheriting like a chain
 
-```java
-                +---------------+ 
-                |  Interface A  | 
-                +--------+------+ 
-                 |              |
-                 |              |
-                 |              |
-        +--------+------+       |
-        |  Interface B  |       |
-        +-------+-------+       |
-        |               |       |
-        |               |       |
-        |               |       |
-+-------+--------+  +---------------+
-|   Interface C  |  |   Interface D |
-+----------------+  +---------------+
-```
+{% gist jp-wang/d601824dd5a199d07eacc1509ee67fb3 InterfaceChainDiagram.java %}
 
-```java
-interface A {
-	default void say(int a) {
-		System.out.println("A");
-	}
-
-}
-
-interface B extends A{
-	default void say(int a) {
-		System.out.println("B");
-	}
-}
-
-interface C extends B{
-	
-}
-
-interface D extends A,B{
-}
-
-class CImpl implements C {
-}
-
-class DImpl implements D {
-}
-
-public static void main(String[] args) {
-    CImpl cImpl = new CImple();
-    DImpl cImpl = new DImple();
-    cImpl.say(1); // "B"
-    dImpl.say(1); // "B"
-}
-```
+{% gist jp-wang/f08019b69d8d1fbb2fa2248cdf63236d InterfaceChain.java %}
 
 So if multiple interfaces are inherited like chain, then the implementation class of any interfaces in that chain will use the last `default method` defined in child-interface which means: in our case, "B" will be printed out.
 
@@ -198,60 +89,15 @@ So if multiple interfaces are inherited like chain, then the implementation clas
 
 * combined the inheritance between interfance and class
 
-```java
-+-------------+       +-----------+
-| Interface A |       |  Class B  |
-+-----------+-+       +-----+-----+
-            ^-+    +--+-----^      
-              |    |               
-          +---+----+-+             
-          |  Class C |             
-          +----------+
-```
+{% gist jp-wang/ba10f639cbbe1a66057c38acf9467ebe CombinedDiagram.java %}
 
-```java
-interface A {
-	default void say() {
-		System.out.println("A");
-	}
-}
-static class B {
-	public void say() {
-		System.out.println("B");
-	}
-}
-static class C extends B implements A{
-	
-}
-public static void main(String[] args) {
-	C c = new C();
-	c.say(); //B
-}
-```
+{% gist jp-wang/e004c178ab7e0cda44824c347afc06b2 Combined.java %}
 
 We all know the polymophism in Java, but if the class C extends B and also implements interface A which has a exact same method defined in class B, how does the object of class C behave when we called `c.say()`?
 
 The answer is - method defined in parent class will be inherited firstly, which means the `void say()` defined in class B will be inherited by C thats printed out "B". Only when the parent class doesn't have the same method, then the `default method` in the interface will be inherited. So if we change a little bit of our code like below, you will get a different result.
 
-```java
-interface A {
-	default void say() {
-		System.out.println("A");
-	}
-}
-static class B {
-	public void say(int i) {
-		System.out.println("B");
-	}
-}
-static class C extends B implements A{
-	
-}
-public static void main(String[] args) {
-	C c = new C();
-	c.say(); //A
-}
-```
+{% gist jp-wang/46a2e3ae3e13fa6e2f664ea10925e3c1 CombinedWithoutOverride.java %}
 
 ## Summary
 
