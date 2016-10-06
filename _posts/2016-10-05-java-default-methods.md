@@ -1,4 +1,6 @@
 ---
+layout: post
+title: Deep dive into Java Default Methods
 published: true
 ---
 ## Preface
