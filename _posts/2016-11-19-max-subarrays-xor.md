@@ -94,12 +94,14 @@ a = a ^ b;
 Magical and fantastic!!
 
 Since the XOR operation has no direction comparing with Add/Sub, it's pretty straight forward to get the expectations like below - 
+
 ```java
 a ^ b == b ^ a //commutative law
 (a ^ b) ^ c == a ^ (b ^ c) //associative law
 ```
 
 And also
+
 ```
 0 ^ a = a // difference between 0 and a is a itself
 a ^ a = 0 // there is no difference between a and itself
