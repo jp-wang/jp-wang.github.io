@@ -1,5 +1,7 @@
 ---
-published: false
+layout: post
+title: Find the maximum subarray XOR in a given array
+published: true
 ---
 
 There is a very insteresting problem when I have a talking with my friend. When we sit together and bring up the brainstorm, it guides us well to understand the inside nature of the problem. That's where this post was created from!
