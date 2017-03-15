@@ -47,13 +47,13 @@ And pls keep in mind: **All the objects are created in Java Heap, and the Stack 
 
 That's a simple introduction of Java Heap and Stack. There are ten thousands of other topics online to summarize them if you want to learn more. The thing we talked above is enough for you to keep continuing.
 
-## What's the problem that Volatile trys to solve?
-In Java aplication, multiple threads can run parallel in different CPUs if the system does have. Due to the performance reasons, each thread may copy variables from main memory into a CPU cache while working on them.
+## What's the problem that Volatile try to solve?
+In Java application, multiple threads can run parallel in different CPUs if the system does have. Due to the performance reasons, each thread may copy variables from main memory into a CPU cache while working on them.
 
 ![image](https://github.com/jp-wang/jp-wang.github.io/blob/master/attachments/java-cpu-cache.jpg?raw=true)
 
 
-So now here is the problem: Without Volatile there are no gurantees about when the JVM reads data from main memory to CPU caches or write data from CPU caches to main memory.
+So now here is the problem: Without Volatile there are no guarantees about when the JVM reads data from main memory to CPU caches or write data from CPU caches to main memory.
 
 Let's take one example. 
 ```java
@@ -64,7 +64,7 @@ public class ShareObject {
 
 There are two threads in our app, thread 1 increments the `count` variable, but both thread 1 and 2 read the `count` variable from time to time.
 
-If the variable of `count` is not declared as `volatile`, there is no gurantee that when the value of `count` is written from the CPU cache in thread 1 back to main memory. That means, the `count` variable value in CPU cache may not be same as main memory like below.
+If the variable of `count` is not declared as `volatile`, there is no guarantee that when the value of `count` is written from the CPU cache in thread 1 back to main memory. That means, the `count` variable value in CPU cache may not be same as main memory like below.
 
 ![java cpu cache example 1](https://github.com/jp-wang/jp-wang.github.io/blob/master/attachments/java-cpu-cache-example1.jpg?raw=true)
 
