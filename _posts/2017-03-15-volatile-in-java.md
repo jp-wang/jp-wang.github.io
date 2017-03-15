@@ -1,5 +1,7 @@
 ---
-published: false
+layout: post
+title: Volatile in Java
+published: true
 ---
 Recently, there is a very interested topic bringing up in my desk: What is **Volatile in Java**? Some guys in my team are saying that Volatile is used for keeping one copy in memory to avoid duplicate object in stack since Modern CPU has multiple cores and each of them has its own cache of the copy, and some others are arguing that Volatile is same as synchronized.
 
