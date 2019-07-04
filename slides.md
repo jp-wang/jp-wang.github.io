@@ -5,3 +5,6 @@ permalink: /presentations/
 ---
 
 ### [Gradle Optimization](/slides/01-gradle-optimization)
+
+PROFILE, PROFILE, PROFILE!
+Profile your build, numbers don't lie
