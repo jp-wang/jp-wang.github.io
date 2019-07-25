@@ -11,4 +11,8 @@ Profile your build, numbers don't lie
 
 ### [Thinking in Navigation API](/slides/02-thinking-in-navigation-api)
 
-Compare different API styles.
+Compare different API styles
+
+### [Navigation HMI Architecture](/slides/03-navigation-hmi-arch)
+
+Jetpack is super suitable..
