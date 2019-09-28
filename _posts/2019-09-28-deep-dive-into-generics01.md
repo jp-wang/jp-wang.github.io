@@ -1,5 +1,7 @@
 ---
-published: false
+layout: post
+title: Deep dive into Java Generics(0x01)
+published: true
 ---
 Recently our team has made a new library to wrap our Routing and Navigation API for Android platform, and we have heavily used Generics to export our functions which saves us a lot templates code and make the code more expressive. However, the Java Generics itself is not that straight comparing with other language's implementation, especially the confusion due to the type erasure of java runtime. So the topics following are the summary of what I have shared internally.
 
