@@ -45,11 +45,11 @@ Why? The answer is simple - type erasure. Thinking about this - if it is support
 
 Same rule is applied to `T.class` which will be equal to `Object.class` that has nothing meanful.
 
-## List<String>.class
+## `List<String>.class`
 
 The class literal of parameterized type is not supported due to the same reason - type erasure. Not matter it is `List<String>` or `List<Integer>` they are equals to `List` during runtime so you just need `List.class`.
 
-## List<int>
+## `List<int>`
 
 It is illegal. Due to the type erasure the element type will be defined as *Object* type in *List* but *Object* type cannot be casted into primitive type so it is not supported to use primitive type as the type argument of parameterized type.
 
