@@ -4,7 +4,7 @@ title: Deep dive into Java Generics(0x02)
 published: true
 ---
 
-**(Part 1: Deep dive into Java Generics(0x01))[https://jp-wang.github.io/deep-dive-into-generics01/] **
+**[Part 1: Deep dive into Java Generics(0x01)](https://jp-wang.github.io/deep-dive-into-generics01/) **
 
 We have talked Java Generics and its limitations after type erasure in previous chapeter. In this post I'm going to discuss another interesting part of generic type while working with array. 
 
