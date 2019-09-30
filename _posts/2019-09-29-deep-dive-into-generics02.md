@@ -1,7 +1,4 @@
 ---
-published: false
----
----
 layout: post
 title: Deep dive into Java Generics(0x02)
 published: true
