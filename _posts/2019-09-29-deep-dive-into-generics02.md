@@ -10,7 +10,7 @@ We have talked Java Generics and its limitations after type erasure in previous 
 
 ## Array
 
-Java was designed to be a Object Oriented Programming language since it was invented. So the type system it implemented was surrounding the object oriented concept which was the subtyping. And one of detail implementation of super-subtype relationship is the inheritance between superclass and its derived subclass or super-interface and its sub-interfaces, or super-interface and its implementation classes. 
+Java was designed to be an Object Oriented Programming language since it was invented. So the type system it implemented was surrounding the object oriented concept which was the subtyping. And one of detail implementation of super-subtype relationship is the inheritance between superclass and its derived subclass or super-interface and its sub-interfaces, or super-interface and its implementation classes. 
 
 For illustration, `class Dog` is the subclass of `class Animal` if you have the definition like this `class Dog extends Animal`. However, in Java the explicit inheritance between superclass and its derived subclass is not the only way to describe the super-subtype relationship. There are couple of more options in Java that you may notice but not thinking through such as **Variance**, and the `Array` in Java is one of the usage of **Variance**.
 
@@ -28,7 +28,7 @@ animals[0] = new Cat();
 
 The code here is totally fine and fully compilable into bytecode. However, it's not compile-time-safe because when you try to operate the array by adding a new element it's throwing a runtime exception `ClassCastException`.
 
-Usually when doing *widening reference convention* such as assign subtype object to supertype reference(like assign `Dog` to `Animal` reference) the compiler will get some kind of safety that only the operations on `Animal` type can be visiable and accessable during compile time.
+Usually when doing *widening reference convention* such as assign subtype object to supertype reference(like assign `Dog` to `Animal` reference) the compiler will get some kind of safety that only the operations on `Animal` type can be visible and accessable during compile time.
 
 ```java
 Dog dog = new Dog();
@@ -37,7 +37,7 @@ animal.move(); //move() is defined in Animal and common for all the animals
 //animal.run(); //but run() is only defined in Dog and it's not available for all the animals.
 ```
 
-So the side effect of losing type safety is not what we want when introducing `Variance`. Theoretically if Java wants to keep the compile-time-safety it should disable the `insert` operation and support read-only. However, it will be huge inconvinient if the `insert` operation is disabled for array especially at the time when Collection framework is not in place yet.
+So the side effect of losing type safety is not what we want when introducing `Variance`. Theoretically if Java wants to keep the compile-time-safety it should disable the `insert` operation and support read-only. However, it will be huge inconvenience if the `insert` operation is disabled for array especially at the time when Collection framework is not in place yet.
 
 > (p.s.: In some new modern languages such as Kotlin the array type is not supported any more. It is replaced by Generic Type such as Array<T>.)
 
@@ -92,7 +92,7 @@ That's why Java does not allow generic array creation for concrete parameterized
 
 ## Reifiable type
 
-So it's pretty obvious that the type information during runtime is very important to gurantee the type safety. 
+So it's pretty obvious that the type information during runtime is very important to guarantee the type safety. 
 
 A type whose type information is fully available at runtime is called **reifiable type**, that is, who does not lose information in the course of type erasure.
 
@@ -105,4 +105,5 @@ The following types are reifiable:
 * raw types
 * array of any of the above
 
-Another usage of reifiable type is the `instanceof` operation. The `instanceof` is checking the object's runtime type so that it can be safely casted to, which means it needs the full type information to gurantee the type safety.
+Another usage of reifiable type is the `instanceof` operation. The `instanceof` is checking the object's runtime type so that it can be safely casted to, which means it needs the full type information to guarantee the type safety.
+
