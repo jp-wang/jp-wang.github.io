@@ -6,7 +6,7 @@ published: true
 
 **[Part 1: Deep dive into Java Generics(0x01)](https://jp-wang.github.io/deep-dive-into-generics01/)**
 
-**[Part 2: Deep dive into Java Fenerics(0x02)](https://jp-wang.github.io/deep-dive-into-generics02/)**
+**[Part 2: Deep dive into Java Generics(0x02)](https://jp-wang.github.io/deep-dive-into-generics02/)**
 
 In last two chapters we have discussed the urgent requirement from Java Community to bring in Generics Type and how it was implemneted finally with the boundary of couple of restrictions due to the compatibility demand.
 
