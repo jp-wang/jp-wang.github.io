@@ -1,3 +1,9 @@
+---
+layout: post
+title: Deep dive into Java Generics(0x03)
+published: true
+---
+
 **[Part 1: Deep dive into Java Generics(0x01)](https://jp-wang.github.io/deep-dive-into-generics01/)**
 
 **[Part 2: Deep dive into Java Fenerics(0x02)](https://jp-wang.github.io/deep-dive-into-generics02/)**
