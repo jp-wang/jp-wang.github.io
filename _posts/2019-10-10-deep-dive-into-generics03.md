@@ -95,9 +95,7 @@ What does it mean? How is it useful?
 
 To explain it more detail we should come always back to the foundmental of subtying system in modern programming languanges.
 
-> In programming language theory, subtyping (also subtype polymorphism or inclusion polymorphism) is a form of type polymorphism in which a subtype is a datatype that is related to another datatype (the supertype) by some notion of substitutability, meaning that program elements, typically subroutines or functions, written to operate on elements of the supertype can also operate on elements of the subtype.
-
->                                   - wikipedia.org
+> In programming language theory, subtyping (also subtype polymorphism or inclusion polymorphism) is a form of type polymorphism in which a subtype is a datatype that is related to another datatype (the supertype) by some notion of substitutability, meaning that program elements, typically subroutines or functions, written to operate on elements of the supertype can also operate on elements of the subtype.                             - wikipedia.org
 
 Basically by leveraging the subtyping concept the programming languange can easily allow you to create a function that takes an object of a certain type `T`, but also work correctly, if passed an object that belongs to a type `S` that is a subtype of `T`.
 
