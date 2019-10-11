@@ -8,7 +8,7 @@ published: true
 
 **[Part 2: Deep dive into Java Generics(0x02)](https://jp-wang.github.io/deep-dive-into-generics02/)**
 
-In last two chapters we have discussed the urgent requirement from Java Community to bring in Generics Type and how it was implemneted finally with the boundary of couple of restrictions due to the compatibility demand.
+In last two chapters we have discussed the urgent requirement from Java Community to bring in Generics Type and how it was implemented finally with the boundary of couple of restrictions due to the compatibility demand.
 
 Of course it met the purpose of bringing in Generics with couple of trickys by the type erasure. Especially, it did bring some waves on where the Java type system originally was not considered *Generics*. 
 
@@ -20,7 +20,7 @@ Both Generics and Array are still belonging to Java Type system, so they should 
 
 However, using parameterized type to construct array(which is `List<String>[]`) is not allowed due to the type safety concern(except the unbounded wildcard type). But how about the `List<String[]>` which was using the array to construct the parameterized type? Yes, it is allowed. Actually most of the reference types in Java can be used as the actual type argument except the primitive types.
 
-The `String[][]` of Array-Array is also doable which we called two-dimensions array, that means we can construct a new array type with another array. Ideally, you can construct a new array with N-dimensions, but Java 
+The `String[][]` of Array-Array is also doable which we called two-dimensions array, that means we can construct a new array type with another array. Ideally, you can construct a new array with N-dimensions, but Java did have limitation on the array size which was Integer.MAX_VALUE.
 
 ## Variance
 
@@ -38,7 +38,7 @@ Number[] nums = ints; //covariant
 nums[0] = new Long(100L); // Will throw runtime expcetion: ArrayStoreException
 ```
 
-However, it is possible to gurantee the type safety of array during compile time. Let's see if Java can introduce a new keyword called `covariant` which can be added in front of type definition and describe that the array is read-only.
+However, it is possible to guarantee the type safety of array during compile time. Let's see if Java can introduce a new keyword called `covariant` which can be added in front of type definition and describe that the array is read-only.
 
 ```java
 Integer[] ints = new Integer[10];
@@ -46,7 +46,7 @@ covariant Number[] nums = ints; //covariant
 nums[0] = new Long(100L); // Will get compile error, such as `Number[]` is a covariant type that supports read-only.
 ```
 
-Why didn't Java handle it like this? I think the major reason is the trade-off they have chosen to make array real useful for most of cases. For example, you have a sequence of items that you want to swap their order. Keep in mind that you didn't have the collection framework to server it at that old age, the only structure you had was array. To make the method really ususful for all different arrays, you have to define the array type to be `object[]`. So if you add read-only restriction on it, then it won't be useful.
+Why didn't Java handle it like this? I think the major reason is the trade-off they have chosen to make array real useful for most of cases. For example, you have a sequence of items that you want to swap their order. Keep in mind that you didn't have the collection framework to server it at that old age, the only structure you had was array. To make the method really useful for all different arrays, you have to define the array type to be `object[]`. So if you add read-only restriction on it, then it won't be useful.
 
 ```java
 void swap(object[] items) {
@@ -69,7 +69,7 @@ swap(ss);
 
 How did Java implement the super-typing and sub-typing relationship among Generics? Can it be directly designed as covariant like array?
 
-Ok, let's assume the Generics can be directively covariant. Let's write some code like this, 
+Ok, let's assume the Generics can be directly covariant. Let's write some code like this, 
 
 ```java
 ArrayList<Integer> intList = new ArrayList<>();
@@ -79,7 +79,7 @@ numList.add(new Long(20)); //it is expected to have some exception such as Colle
 
 As a result of type erasure there is neither runtime type safety check nor compile-time type safety check since we allow the covariant between `ArrayList<Integer>` and `ArrayList<Number>`. This will bring in huge problem into Java type system and against the rules of type safety.
 
-So same thought as we discussed earlier to make the Array type safety if allowing covariant - it can be defined in such a way that it allows read-only to gurantee the type safety. Java introduces the synctax called `upper bounded wildcard` like this `ArrayList<? extends Number>` to make the `ArrayList<? extends Number>` and `ArrayList<Integer>` being covariant. Meanwhile, the Compiler will gurantee the read-only when you access the operations in `ArrayList<? extends Number>`. For example, the `add()` method will not be able to called anymore.
+So same thought as we discussed earlier to make the Array type safety if allowing covariant - it can be defined in such a way that it allows read-only to guarantee the type safety. Java introduces the syntax called `upper bounded wildcard` like this `ArrayList<? extends Number>` to make the `ArrayList<? extends Number>` and `ArrayList<Integer>` being covariant. Meanwhile, the Compiler will guarantee the read-only when you access the operations in `ArrayList<? extends Number>`. For example, the `add()` method will not be able to called anymore.
 
 ```java
 ArrayList<Integer> intList = new ArrayList<>();
@@ -93,11 +93,13 @@ We have talked the **Covariance** which will preserve the ordering of types(<=) 
 
 What does it mean? How is it useful?
 
-To explain it more detail we should come always back to the foundmental of subtying system in modern programming languanges.
+To explain it more detail we should come always back to the fundmental of subtyping system in modern programming languages.
 
-> In programming language theory, subtyping (also subtype polymorphism or inclusion polymorphism) is a form of type polymorphism in which a subtype is a datatype that is related to another datatype (the supertype) by some notion of substitutability, meaning that program elements, typically subroutines or functions, written to operate on elements of the supertype can also operate on elements of the subtype.                             - wikipedia.org
+> In programming language theory, subtyping (also subtype polymorphism or inclusion polymorphism) is a form of type polymorphism in which a subtype is a datatype that is related to another datatype (the supertype) by some notion of substitutability, meaning that program elements, typically subroutines or functions, written to operate on elements of the supertype can also operate on elements of the subtype.
 
-Basically by leveraging the subtyping concept the programming languange can easily allow you to create a function that takes an object of a certain type `T`, but also work correctly, if passed an object that belongs to a type `S` that is a subtype of `T`.
+>                                   - wikipedia.org
+
+Basically by leveraging the subtyping concept the programming language can easily allow you to create a function that takes an object of a certain type `T`, but also work correctly, if passed an object that belongs to a type `S` that is a subtype of `T`.
 
 So both **Covariance** and **Contravariance** are serving the same purpose which is making the subtype relationship and leveraging language's object oriented features.
 
